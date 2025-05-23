@@ -1,6 +1,13 @@
 while ($true) {
-    $frame = Invoke-RestMethod https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame_main.txt
-    Write-Host $frame
-    Start-Sleep -Milliseconds 100
-    Clear-Host
+    for ($i = 1; $i -le 10; $i++) {
+        $url = "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame$($i).txt"
+        try {
+            $frame = Invoke-RestMethod $url
+            Write-Host $frame
+        } catch {
+            Write-Host "Error loading $url"
+        }
+        Start-Sleep -Milliseconds 100
+        Clear-Host
+    }
 }
