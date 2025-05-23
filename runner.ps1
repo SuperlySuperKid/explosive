@@ -1,6 +1,11 @@
+$frames = @(
+    "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame1.txt",
+    "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame2.txt"
+    # Add more URLs here
+)
+
 while ($true) {
-    for ($i = 1; $i -le 2; $i++) {
-        $url = "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame$($i).txt"
+    foreach ($url in $frames) {
         try {
             $frame = Invoke-RestMethod $url
             Write-Host $frame
