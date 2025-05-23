@@ -1,5 +1,5 @@
 while ($true) {
-    for ($i = 1; $i -le 10; $i++) {
+    for ($i = 1; $i -le 2; $i++) {
         $url = "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame$($i).txt"
         try {
             $frame = Invoke-RestMethod $url
