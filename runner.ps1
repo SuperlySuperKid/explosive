@@ -1,6 +1,9 @@
 $frames = @(
     "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame1.txt",
-    "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame2.txt"
+     "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame2.txt",
+      "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame3.txt",
+       "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame4.txt",
+    "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame5.txt"
     # Add more URLs here
 )
 
