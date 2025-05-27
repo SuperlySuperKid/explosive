@@ -1,18 +1,14 @@
-# runner.ps1
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-# 1) List your image frames here (must be raw GitHub URLs to .png/.jpg files)
-$frames = @(
-    "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame1.png",
-    "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame2.png",
-    "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame3.png",
-    "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame4.png",
-    "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame5.png"
-    # …add more as needed
-)
+# Base URL (change this to match your repo and naming)
+$baseUrl = "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame"
+$fileExt = ".png"
 
-# 2) Create WinForms window and PictureBox
+# Number of frames in your animation
+$totalFrames = 5
+
+# Create the form and picture box
 $form = New-Object System.Windows.Forms.Form
 $form.Text = "Explosive Animation"
 $form.ClientSize = New-Object System.Drawing.Size(400,400)
@@ -20,17 +16,18 @@ $form.StartPosition = "CenterScreen"
 
 $pb = New-Object System.Windows.Forms.PictureBox
 $pb.Dock = "Fill"
-$pb.SizeMode = "Zoom"           # Scale to fit
+$pb.SizeMode = "Zoom"
 $form.Controls.Add($pb)
 
-# 3) Set up a timer to cycle through frames
-$index = 0
+# Timer setup
+$index = 1
 $timer = New-Object System.Windows.Forms.Timer
-$timer.Interval = 100           # milliseconds per frame
+$timer.Interval = 100
 
 $timer.Add_Tick({
+    $url = "$baseUrl$index$fileExt"
+
     try {
-        $url = $frames[$index]
         $req = [System.Net.WebRequest]::Create($url)
         $resp = $req.GetResponse()
         $stream = $resp.GetResponseStream()
@@ -38,17 +35,15 @@ $timer.Add_Tick({
         $stream.Close()
         $resp.Close()
 
-        # Assign to PictureBox (disposing old one)
         if ($pb.Image) { $pb.Image.Dispose() }
         $pb.Image = $img
 
-        $index = ($index + 1) % $frames.Count
+        $index = ($index % $totalFrames) + 1
     }
     catch {
-        Write-Host "Error loading $url: $_" -ForegroundColor Red
+        Write-Host "Error loading $url" -ForegroundColor Red
     }
 })
 
-# 4) Start!
 $timer.Start()
 [void]$form.ShowDialog()
