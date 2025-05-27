@@ -1,12 +1,12 @@
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
-# Base URL (change this to match your repo and naming)
+# Base GitHub URL for your frames
 $baseUrl = "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame"
-$fileExt = ".png"
+$fileExt = ".jpg"
 
-# Number of frames in your animation
-$totalFrames = 5
+# Total number of frames
+$totalFrames = 5  # Adjust this as needed
 
 # Create the form and picture box
 $form = New-Object System.Windows.Forms.Form
