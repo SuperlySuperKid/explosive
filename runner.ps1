@@ -2,11 +2,11 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
 # Base GitHub URL for your frames
-$baseUrl = "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/frame"
+$baseUrl = "https://raw.githubusercontent.com/SuperlySuperKid/explosive/main/ezgif-frame-"
 $fileExt = ".jpg"
 
 # Total number of frames
-$totalFrames = 5  # Adjust this as needed
+$totalFrames = 100  # Adjust this as needed
 
 # Create the form and picture box
 $form = New-Object System.Windows.Forms.Form
